@@ -1,6 +1,7 @@
 package com.rmit;
 
 public class Driver {
+    
     private String driverID;
     private String name;
     private int experienceYears;
@@ -17,6 +18,16 @@ public class Driver {
         this.birthdate = birthdate;
     }
 
-    
+    public void setDriverExperience(int experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public void setDriverLicenseType(String licenseType) {
+        this.licenseType = licenseType;
+    }
+
+    public void setDriverAddress(String address) {
+        this.address = address;
+    }
 
 }
