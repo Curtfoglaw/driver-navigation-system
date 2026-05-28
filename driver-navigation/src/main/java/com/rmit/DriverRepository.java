@@ -10,6 +10,7 @@ public class DriverRepository {
     FileWriter writer;
     File myFile;
 
+    // Function for adding a driver to the .txt file
     public void Add(Driver driver) {
         try {
             writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt", true);
@@ -25,6 +26,8 @@ public class DriverRepository {
     public void Update() {
         return;
     }
+
+    // Function for retrieving the details of a driver from the .txt file given their ID
     public String Retrieve(String driverID) {
         try {
             myFile = new File("driver-navigation\\src\\DriverStorage.txt");
@@ -51,7 +54,25 @@ public class DriverRepository {
         return null;
 
     }
-    public int Count() {
-        return 0;
+
+    // Function to see how many drivers are currently stored in the .txt file
+    public void Count() {
+        int currentCount = 0;
+
+        try {
+            myFile = new File("driver-navigation\\src\\DriverStorage.txt");
+            Scanner scnr = new Scanner(myFile);
+
+            while (scnr.hasNextLine()) {
+                scnr.nextLine();
+                currentCount += 1;
+            }
+            currentCount -= 1;          // Subtract 1 to account for the first line headers
+            System.out.println("Number of drivers: " + currentCount);
+            scnr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
