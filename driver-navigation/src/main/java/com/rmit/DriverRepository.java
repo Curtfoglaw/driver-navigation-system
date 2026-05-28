@@ -1,8 +1,21 @@
 package com.rmit;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class DriverRepository {
-    public void Add() {
-        return;
+
+    FileWriter writer;
+    
+    public void Add(Driver driver) {
+        try {
+            writer = new FileWriter("C:\\Users\\curtl\\OneDrive\\Desktop\\SoftwareEng\\Assignment4\\driver-navigation-system\\driver-navigation\\src\\DriverStorage.txt", true);
+            writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
+                         driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate());
+            writer.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
     public void Update() {
         return;

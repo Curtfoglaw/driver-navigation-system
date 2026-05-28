@@ -1,0 +1,2 @@
+driverID, name, experienceYears, licenseType, address, birthdate
+34@#1234AA, John, 10, Heavy, 64|stink|melbourne|victoria|Australia, 10-10-1990
