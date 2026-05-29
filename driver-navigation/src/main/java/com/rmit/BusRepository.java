@@ -11,6 +11,7 @@ public class BusRepository {
     FileWriter writer;
     File myFile;
 
+
     public void Add(Bus bus) {
         try {
             writer = new FileWriter("driver-navigation\\src\\BusStorage.txt", true);
@@ -23,7 +24,7 @@ public class BusRepository {
         }
     }
 
-    public String Update(String busID, int capacity, double fuelLevel) {
+    public String Update(String busID, String field, String newValue) {
         try {
             myFile = new File("driver-navigation\\src\\BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
