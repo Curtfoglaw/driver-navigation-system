@@ -15,15 +15,51 @@ public class BusRepository {
     }
 
     public void Update() {
-
+        return;
     }
 
-    public void Retrieve() {
+    public String Retrieve(String busID) {
+        try {
+            myFile = new File("driver-navigation\\src\\BusStorage.txt");
+            Scanner scnr = new Scanner(myFile);
 
+            while (scnr.hasNextLine()) {
+
+                String line = scnr.nextLine();
+                String[] busInfo = line.split(", ");
+
+                if (busInfo[0].equals(busID)) {
+                    scnr.close();
+                    System.out.println("Bus found: \n");
+                    System.out.println(line);
+                    return line;
+                }
+
+            }
+            scnr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Bus not found");
+        return null;
     }
 
-    public int Count() {
+    public void Count() {
+        int currentCount = 0;
 
-        return 0;
+        try {
+            myFile = new File("driver-navigation\\src\\BusStorage.txt");
+            Scanner scnr = new Scanner(myFile);
+
+            while (scnr.hasNextLine()) {
+                scnr.nextLine();
+                currentCount += 1;
+            }
+            currentCount -= 1;          // Subtract 1 to account for the first line headers
+            System.out.println("Number of buses: " + currentCount);
+            scnr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
