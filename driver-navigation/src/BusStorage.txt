@@ -1,0 +1,1 @@
+busID | Capacity | fuelLevel | fuelType 
