@@ -6,7 +6,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BusRepository {
-    // Add (), Update (), Retrieve (), Count () functions
+    
+    FileWriter writer;
+    File myFile;
+    
     public void Add(Bus bus) {
         try {
             writer = new FileWriter("driver-navigation\\src\\BusStorage.txt", true);
