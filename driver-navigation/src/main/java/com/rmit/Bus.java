@@ -12,4 +12,28 @@ public class Bus {
         this.fuelLevel = fuelLevel;
         this.fuelType = fuelType;
     }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setFuelLevel(double fuelLevel) {
+        this.fuelLevel = fuelLevel;
+    }
+
+    public String getBusID() {
+        return this.busID;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public double getFuelLevel() {
+        return this.fuelLevel;
+    }
+
+    public String getFuelType() {
+        return this.fuelType;
+    }
 }
