@@ -16,6 +16,7 @@ public class DriverRepository {
 
         String validOrNotID = Driver.isValidDriverID(driver.getDriverID());
         String validOrNotAddress = Driver.isValidDriverAddress(driver.getDriverAddress());
+        String validOrNotBirthdate = Driver.isValidDriverBirthDate(driver.getDriverBirthDate());
 
         if (Retrieve(driver.getDriverID()) != null) {
             return "Driver ID must be unique.";
@@ -26,7 +27,9 @@ public class DriverRepository {
         if (!validOrNotAddress.equals("Valid formatting for driver address.")) {
             return validOrNotAddress;
         }
-        
+        if (!validOrNotBirthdate.equals("Valid formatting for driver birthdate")) {
+            return validOrNotBirthdate;
+        }
         else {
             try {
                 writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt", true);
@@ -45,6 +48,8 @@ public class DriverRepository {
 
     // Function for updating the contents of a driver
     public String Update(String driverID, String field, String newValue) {
+
+    
         try {
             myFile = new File("driver-navigation\\src\\DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
@@ -66,9 +71,13 @@ public class DriverRepository {
                             driverInfo[2] = newValue;
                             break;
                         case "licenseType":
+                            if (!Driver.canUpdateLicenseType(Integer.parseInt(driverInfo[2])).equals("Driver's license type can be updated.")) {
+                                return Driver.canUpdateLicenseType(Integer.parseInt(driverInfo[2]));
+                            }
                             driverInfo[3] = newValue;
                             break;
                         case "address":
+
                             driverInfo[4] = newValue;
                             break;
                         default:
