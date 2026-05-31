@@ -21,7 +21,7 @@ public class DriverRepository {
         String validOrNotAddress = Driver.isValidDriverAddress(driver.getDriverAddress());
         String validOrNotBirthdate = Driver.isValidDriverBirthDate(driver.getDriverBirthDate());
 
-        if (Retrieve(driver.getDriverID()) != null) {
+        if (Retrieve(driver.getDriverID()) != "Driver not found") {
             return "Driver ID must be unique.";
         }
         if (!validOrNotID.equals("Driver ID is valid")) {
@@ -84,7 +84,7 @@ public class DriverRepository {
                             driverInfo[4] = newValue;
                             break;
                         default:
-                            return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field";
+                            return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.";
                     }
                     lines.set(i, String.join(", ", driverInfo));
                     writer = new FileWriter("DriverStorage.txt", false);
@@ -123,8 +123,7 @@ public class DriverRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Driver with ID: " + driverID + " not found");
-        return null;
+        return "Driver not found";
 
     }
 
