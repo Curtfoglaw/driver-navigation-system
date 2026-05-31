@@ -62,6 +62,10 @@ public class Driver {
         return this.birthdate;
     }
 
+    public String getDriverInfo() {
+        return this.driverID + ", " + this.name + ", " + this.experienceYears + ", " + this.licenseType + ", " + this.address + ", " + this.birthdate;
+    }
+
     // Method for checking if the driver ID follows the basic requirements
     public static String isValidDriverID(String driverID) {
         if (driverID.length() != 10) {
