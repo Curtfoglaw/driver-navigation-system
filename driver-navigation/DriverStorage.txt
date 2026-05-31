@@ -1,2 +1,1 @@
 driverID, name, experienceYears, licenseType, address, birthdate
-34@#1234AA, John, 5, Medium, 12|Main St|Melbourne|VIC|Australia, 12-05-1990

@@ -14,7 +14,7 @@ public class DriverRepository {
     File myFile;
 
 
-    // Function for adding a driver to the .txt file
+    // Function for adding a driver to the DriverStorage.txt file
     public String Add(Driver driver) {
 
         String validOrNotID = Driver.isValidDriverID(driver.getDriverID());
@@ -102,7 +102,7 @@ public class DriverRepository {
 
     }
 
-    // Function for retrieving the details of a driver from the .txt file given their ID
+    // Function for retrieving the details of a driver from the DriverStorage.txt file given their ID
     public String Retrieve(String driverID) {
         try {
             myFile = new File("DriverStorage.txt");
@@ -127,7 +127,7 @@ public class DriverRepository {
 
     }
 
-    // Function to see how many drivers are currently stored in the .txt file
+    // Function to see how many drivers are currently stored in the DriverStorage.txt file
     public int Count() {
         int currentCount = 0;
 
