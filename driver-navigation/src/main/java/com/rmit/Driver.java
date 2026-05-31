@@ -106,4 +106,37 @@ public class Driver {
         return "Valid formatting for driver address.";
         
     }
+
+    // Method for checking if the driver address is the correct format
+
+    public static String isValidDriverBirthDate(String birthdate) {
+        String[] birthdateParts = birthdate.split("-");
+
+        if (birthdateParts.length != 3) {
+            return "Invalid driver birthdate, incorrect formatting.";
+        }
+        for (String part : birthdateParts) {
+            if (part.trim().isEmpty()) {
+                return "Invalid driver birthdate, incorrect formatting.";
+            }
+        }
+        for (int i = 0; i < birthdateParts.length - 1; i++) {
+            if (birthdateParts[i].length() != 2) {
+                return "Invalid driver birthdate, incorrect formatting.";
+            }
+        }
+        if (birthdateParts[2].length() != 4) {
+            return "Invalid driver birthdate, incorrect formatting.";
+        }
+        return "Valid formatting for driver birthdate.";
+    }
+
+    // Method for checking if a driver's license type can be updated
+
+    public static String canUpdateLicenseType(int experienceYears) {
+        if (experienceYears > 10) {
+            return "Driver's license type cannot be updated.";
+        }
+        return "Driver's license type can be updated.";
+    }
 }
