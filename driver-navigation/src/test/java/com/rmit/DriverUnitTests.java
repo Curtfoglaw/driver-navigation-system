@@ -192,5 +192,58 @@ public class DriverUnitTests {
 
     }
 
+    // Unit testing for Immutable fields
+
+    @Test
+    public void testD5_ValidUpdateAttempt() {
+
+        DriverRepository repo = new DriverRepository();
+
+        Driver driver = new Driver("34@#1234AM", "John", 10, "Medium", "12|Able St|Melbourne|VIC|Australia", "12-05-1990");
+
+        repo.Add(driver);
+
+        String result = repo.Update("34@#1234AM", "experienceYears", "11");
+
+        assertEquals("Driver updated successfully.", result);
+
+        repo.clearDriverStorage();
+
+    }
+
+    @Test
+    public void testD5_InvalidUpdateAttempt() {
+
+        DriverRepository repo = new DriverRepository();
+
+        Driver driver = new Driver("34@#1234AM", "John", 10, "Medium", "12|Able St|Melbourne|VIC|Australia", "12-05-1990");
+
+        repo.Add(driver);
+
+        String result = repo.Update("34@#1234AM", "driverID", "25@#1534PR");
+
+        assertEquals("Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.", result);
+
+        repo.clearDriverStorage();
+
+    }
+
+    @Test
+    public void testD5_edgeCase() {
+
+        DriverRepository repo = new DriverRepository();
+
+        Driver driver = new Driver("34@#1234AM", "John", 10, "Medium", "12|Able St|Melbourne|VIC|Australia", "12-05-1990");
+
+        repo.Add(driver);
+
+        String result = repo.Update("34@#1234AM", "driverID", "34@#1234AM");
+
+        assertEquals("Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.", result);
+
+        repo.clearDriverStorage();
+
+    }
+
 
 }   
