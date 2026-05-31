@@ -152,8 +152,7 @@ public class DriverRepository {
 
     public void clearDriverStorage() {
         try (FileWriter fw = new FileWriter("DriverStorage.txt")) {
-            fw.write("driverID, name, experienceYears, licenseType, address, birthdate" + "\n");
-            fw.write("34@#1234AA, John, 5, Medium, 12|Main St|Melbourne|VIC|Australia, 12-05-1990" + "\n");          
+            fw.write("driverID, name, experienceYears, licenseType, address, birthdate" + "\n");         
 
         } 
         catch (IOException e){

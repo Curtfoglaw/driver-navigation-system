@@ -29,7 +29,11 @@ public class DriverUnitTests {
 
         Driver driver = new Driver("34@#1234AA", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
 
-        String result = repo.Add(driver);
+        repo.Add(driver);
+
+        Driver newDriver = new Driver("34@#1234AA", "James", 7, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
+
+        String result = repo.Add(newDriver);
 
         assertEquals("Driver ID must be unique.", result);
 
