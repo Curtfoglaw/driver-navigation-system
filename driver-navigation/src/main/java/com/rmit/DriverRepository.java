@@ -21,7 +21,7 @@ public class DriverRepository {
         String validOrNotAddress = Driver.isValidDriverAddress(driver.getDriverAddress());
         String validOrNotBirthdate = Driver.isValidDriverBirthDate(driver.getDriverBirthDate());
 
-        if (Retrieve(driver.getDriverID()) != "Driver not found") {
+        if (Retrieve(driver.getDriverID()) != "Driver not found.") {
             return "Driver ID must be unique.";
         }
         if (!validOrNotID.equals("Driver ID is valid")) {
@@ -123,7 +123,7 @@ public class DriverRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Driver not found";
+        return "Driver not found.";
 
     }
 

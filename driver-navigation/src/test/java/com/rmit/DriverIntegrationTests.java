@@ -22,5 +22,19 @@ public class DriverIntegrationTests {
         repo.clearDriverStorage();
     }   
 
+    // Integration test to check that an invalid driver is rejected and not in the .txt file
+    @Test
+    public void TestDIT2() {
+        
+        DriverRepository repo = new DriverRepository();
+        Driver driver = new Driver("34@#1234bb", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
+        repo.Add(driver);
+        String result = repo.Retrieve(driver.getDriverID());
+
+        assertEquals("Driver not found.", result);
+
+        repo.clearDriverStorage();
+    }   
+
 
 }
