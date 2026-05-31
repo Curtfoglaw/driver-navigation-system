@@ -27,12 +27,12 @@ public class DriverRepository {
         if (!validOrNotAddress.equals("Valid formatting for driver address.")) {
             return validOrNotAddress;
         }
-        if (!validOrNotBirthdate.equals("Valid formatting for driver birthdate")) {
+        if (!validOrNotBirthdate.equals("Valid formatting for driver birthdate.")) {
             return validOrNotBirthdate;
         }
         else {
             try {
-                writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt", true);
+                writer = new FileWriter("DriverStorage.txt", true);
                 writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
                             driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
                 writer.close();
@@ -51,7 +51,7 @@ public class DriverRepository {
 
     
         try {
-            myFile = new File("driver-navigation\\src\\DriverStorage.txt");
+            myFile = new File("DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
             ArrayList<String> lines = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class DriverRepository {
                             return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field";
                     }
                     lines.set(i, String.join(", ", driverInfo));
-                    FileWriter writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt");
+                    FileWriter writer = new FileWriter("DriverStorage.txt");
 
                     for (String line : lines) {
                         writer.write(line + "\n");
@@ -104,7 +104,7 @@ public class DriverRepository {
     // Function for retrieving the details of a driver from the .txt file given their ID
     public String Retrieve(String driverID) {
         try {
-            myFile = new File("driver-navigation\\src\\DriverStorage.txt");
+            myFile = new File("DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
             scnr.nextLine();
             while (scnr.hasNextLine()) {
@@ -132,7 +132,7 @@ public class DriverRepository {
         int currentCount = 0;
 
         try {
-            myFile = new File("driver-navigation\\src\\DriverStorage.txt");
+            myFile = new File("DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
 
             while (scnr.hasNextLine()) {
