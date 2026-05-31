@@ -1,5 +1,6 @@
 package com.rmit;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,8 +9,10 @@ import java.util.Scanner;
 
 public class DriverRepository {
 
+    
     FileWriter writer;
     File myFile;
+
 
     // Function for adding a driver to the .txt file
     public String Add(Driver driver) {
@@ -32,7 +35,7 @@ public class DriverRepository {
         }
         else {
             try {
-                writer = new FileWriter("DriverStorage.txt", true);
+                writer  = new FileWriter("DriverStorage.txt", true);
                 writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
                             driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
                 writer.close();
@@ -84,20 +87,18 @@ public class DriverRepository {
                             return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field";
                     }
                     lines.set(i, String.join(", ", driverInfo));
-                    FileWriter writer = new FileWriter("DriverStorage.txt");
-
+                    writer = new FileWriter("DriverStorage.txt", false);
                     for (String line : lines) {
                         writer.write(line + "\n");
                     }
                     writer.close();
-                    return "Driver updated successfully";
+                    return "Driver updated successfully.";
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Driver not found");
-        return null;
+        return "Driver not found.";
 
     }
 
@@ -147,6 +148,18 @@ public class DriverRepository {
             e.printStackTrace();
         }
         return 0;
+
+    }
+
+    public void clearDriverStorage() {
+        try (FileWriter fw = new FileWriter("DriverStorage.txt")) {
+            fw.write("driverID, name, experienceYears, licenseType, address, birthdate" + "\n");
+            fw.write("34@#1234AA, John, 5, Medium, 12|Main St|Melbourne|VIC|Australia, 12-05-1990" + "\n");          
+
+        } 
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 }
