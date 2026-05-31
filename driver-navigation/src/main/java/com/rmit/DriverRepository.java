@@ -12,18 +12,38 @@ public class DriverRepository {
     File myFile;
 
     // Function for adding a driver to the .txt file
-    public void Add(Driver driver) {
-        try {
-            writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt", true);
-            writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
-                         driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
-            writer.close();
+    public String Add(Driver driver) {
+
+        String validOrNotID = Driver.isValidDriverID(driver.getDriverID());
+        String validOrNotAddress = Driver.isValidDriverAddress(driver.getDriverAddress());
+
+        if (Retrieve(driver.getDriverID()) != null) {
+            return "Driver ID must be unique.";
         }
-        catch (IOException e){
-            e.printStackTrace();
+        if (!validOrNotID.equals("Driver ID is valid")) {
+            return validOrNotID;
         }
+        if (!validOrNotAddress.equals("Valid formatting for driver address.")) {
+            return validOrNotAddress;
+        }
+        
+        else {
+            try {
+                writer = new FileWriter("driver-navigation\\src\\DriverStorage.txt", true);
+                writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
+                            driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
+                writer.close();
+                return "Driver added successfully.";
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
+
+    // Function for updating the contents of a driver
     public String Update(String driverID, String field, String newValue) {
         try {
             myFile = new File("driver-navigation\\src\\DriverStorage.txt");
@@ -85,8 +105,6 @@ public class DriverRepository {
 
                 if (driverInfo[0].equals(driverID)) {
                     scnr.close();
-                    System.out.println("Driver found: \n");
-                    System.out.println(line);
                     return line;
                 }
 
@@ -95,7 +113,7 @@ public class DriverRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Driver not found");
+        System.out.println("Driver with ID: " + driverID + " not found");
         return null;
 
     }
