@@ -97,7 +97,7 @@ public class DriverRepository {
                             driverInfo[4] = newValue;
                             break;
                         default:
-                            return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.";
+                            return "Could not change detail. Field entered is not valid for update.";
                     }
                     lines.set(i, String.join(", ", driverInfo));
                     writer = new FileWriter(fileRouteString + "DriverStorage.txt", false);

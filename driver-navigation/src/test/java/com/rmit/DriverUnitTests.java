@@ -49,7 +49,7 @@ public class DriverUnitTests {
 
         String result = repo.Add(driver);
 
-        assertEquals("The last 2 characters of the ID must be upepr case letters.", result);
+        assertEquals("The last 2 characters of the ID must be upper case letters.", result);
 
         repo.clearDriverStorage();
     }
@@ -226,7 +226,7 @@ public class DriverUnitTests {
 
         String result = repo.Update("34@#1234AM", "driverID", "25@#1534PR");
 
-        assertEquals("Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.", result);
+        assertEquals("Could not change detail. Field entered is not valid for update.", result);
 
         repo.clearDriverStorage();
 
@@ -243,7 +243,7 @@ public class DriverUnitTests {
 
         String result = repo.Update("34@#1234AM", "driverID", "34@#1234AM");
 
-        assertEquals("Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.", result);
+        assertEquals("Could not change detail. Field entered is not valid for update.", result);
 
         repo.clearDriverStorage();
 

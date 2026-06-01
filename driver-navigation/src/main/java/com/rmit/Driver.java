@@ -78,7 +78,7 @@ public class Driver {
             return "Characters at position 1 and 2 in the ID must be numbers between 2 and 9.";
         }
         else if (!Character.isUpperCase(driverID.charAt(8)) || !Character.isUpperCase(driverID.charAt(9))) {
-            return "The last 2 characters of the ID must be upepr case letters.";
+            return "The last 2 characters of the ID must be upper case letters.";
         }
         else {
             int specialCharacterCount = 0;
