@@ -9,9 +9,25 @@ import java.util.Scanner;
 
 public class DriverRepository {
 
-    
     FileWriter writer;
     File myFile;
+    String fileRouteString = "";
+
+    private boolean appTestingTrue = false;
+
+    public DriverRepository() {
+        this(false);
+    }
+
+    public DriverRepository(boolean appTestingTrue) {
+        this.appTestingTrue = appTestingTrue;
+
+        if (this.appTestingTrue == true) {
+            fileRouteString = "driver-navigation\\";
+        } else {
+            fileRouteString = ""; 
+        }
+    }
 
 
     // Function for adding a driver to the DriverStorage.txt file
@@ -21,7 +37,7 @@ public class DriverRepository {
         String validOrNotAddress = Driver.isValidDriverAddress(driver.getDriverAddress());
         String validOrNotBirthdate = Driver.isValidDriverBirthDate(driver.getDriverBirthDate());
 
-        if (Retrieve(driver.getDriverID()) != "Driver not found.") {
+        if (!Retrieve(driver.getDriverID()).equals("Driver not found.")) {
             return "Driver ID must be unique.";
         }
         if (!validOrNotID.equals("Driver ID is valid")) {
@@ -33,28 +49,25 @@ public class DriverRepository {
         if (!validOrNotBirthdate.equals("Valid formatting for driver birthdate.")) {
             return validOrNotBirthdate;
         }
-        else {
-            try {
-                writer  = new FileWriter("DriverStorage.txt", true);
-                writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
-                            driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
-                writer.close();
-                return "Driver added successfully.";
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
+        try {
+            writer  = new FileWriter(fileRouteString + "DriverStorage.txt", true);
+            writer.write(driver.getDriverID() + ", " + driver.getDriverName() + ", " + driver.getDriverExperienceYrs() + ", " + 
+                        driver.getDriverLicenseType() + ", " + driver.getDriverAddress() + ", " + driver.getDriverBirthDate() + "\n");
+            writer.close();
+            return "Driver added successfully.";
         }
-        return null;
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return "Driver ould not be added.";
     }
 
 
     // Function for updating the contents of a driver
     public String Update(String driverID, String field, String newValue) {
-
     
         try {
-            myFile = new File("DriverStorage.txt");
+            myFile = new File(fileRouteString + "DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
             ArrayList<String> lines = new ArrayList<>();
 
@@ -87,7 +100,7 @@ public class DriverRepository {
                             return "Could not change detail. Either user entered invalid detail (ID, name, age) or didn't select valid field.";
                     }
                     lines.set(i, String.join(", ", driverInfo));
-                    writer = new FileWriter("DriverStorage.txt", false);
+                    writer = new FileWriter(fileRouteString + "DriverStorage.txt", false);
                     for (String line : lines) {
                         writer.write(line + "\n");
                     }
@@ -105,7 +118,7 @@ public class DriverRepository {
     // Function for retrieving the details of a driver from the DriverStorage.txt file given their ID
     public String Retrieve(String driverID) {
         try {
-            myFile = new File("DriverStorage.txt");
+            myFile = new File(fileRouteString + "DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
             scnr.nextLine();
             while (scnr.hasNextLine()) {
@@ -129,10 +142,10 @@ public class DriverRepository {
 
     // Function to see how many drivers are currently stored in the DriverStorage.txt file
     public int Count() {
-        int currentCount = 0;
 
+        int currentCount = 0;
         try {
-            myFile = new File("DriverStorage.txt");
+            myFile = new File(fileRouteString + "DriverStorage.txt");
             Scanner scnr = new Scanner(myFile);
 
             while (scnr.hasNextLine()) {
@@ -151,7 +164,7 @@ public class DriverRepository {
     }
 
     public void clearDriverStorage() {
-        try (FileWriter fw = new FileWriter("DriverStorage.txt")) {
+        try (FileWriter fw = new FileWriter(fileRouteString + "DriverStorage.txt")) {
             fw.write("driverID, name, experienceYears, licenseType, address, birthdate" + "\n");         
 
         } 

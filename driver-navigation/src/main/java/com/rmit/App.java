@@ -8,18 +8,17 @@ import java.util.ArrayList;
 public class App 
 {
     public static void main(String[] args)
-    {
-        DriverRepository repo = new DriverRepository();
-        Driver driver = new Driver("11!!1111AA", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
-        repo.Add(driver);
+    {   
+        System.out.println("Starting in App.java");
+        DriverRepository repo = new DriverRepository(true); 
 
-        // Testing functionality
+        repo.Count();
 
-        System.out.println(repo.Retrieve("11!!1111AA"));
-        System.out.println(repo.Count());
-        System.out.println(repo.Count());
+        Driver driver = new Driver("22!!1111AA", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
+        String addResult = repo.Add(driver);
+        System.out.println("Add result: " + addResult);
 
-
+        repo.Count();
     }
 
 
