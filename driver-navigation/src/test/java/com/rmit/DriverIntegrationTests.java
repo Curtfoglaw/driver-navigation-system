@@ -12,9 +12,9 @@ public class DriverIntegrationTests {
     public void TestDIT1() {
         
         DriverRepository repo = new DriverRepository();
-        Driver driver = new Driver("34@#1234AB", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
+        Driver driver = new Driver("34@#1234NL", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
         repo.Add(driver);
-        String result = repo.Retrieve(driver.getDriverID());
+        String result = repo.Retrieve("34@#1234NL");
         String expectedResult = driver.getDriverInfo();
 
         assertEquals(expectedResult, result);

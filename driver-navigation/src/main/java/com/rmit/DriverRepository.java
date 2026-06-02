@@ -95,6 +95,7 @@ public class DriverRepository {
                         case "address":
 
                             driverInfo[4] = newValue;
+                            
                             break;
                         default:
                             return "Could not change detail. Field entered is not valid for update.";
