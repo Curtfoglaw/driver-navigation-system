@@ -154,6 +154,7 @@ public class BusRepository {
             }
             currentCount -= 1;          // Subtract 1 to account for the first line headers
             scnr.close();
+            System.out.println("Number of buses: " + currentCount);
             return currentCount;
         } catch (Exception e) {
             e.printStackTrace();
