@@ -43,6 +43,21 @@ public class BusRepository {
     }
 
     public String Update(String busID, String field, String newValue) {
+        if (field.equals("fuelLevel")) {
+            String validOrNotFuelLevel = bus.isValidFuelLevel(bus.getFuelLevel());
+
+            if (!validOrNotFuelLevel.equals("Fuel level is valid.")) {
+                return validOrNotFuelLevel;
+            }
+        }
+        if (field.equals("capacity")) {
+            String validOrNotCapacity = bus.isValidCapacity(bus.getCapacity());
+
+            if (!validOrNotCapacity.equals(Fuel level is valid.)) {
+                return validOrNotCapacity;
+            }
+        }
+
         try {
             myFile = new File("driver-navigation\\src\\BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
