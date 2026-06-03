@@ -162,6 +162,22 @@ public class BusRepository {
         return 0;
     }
 
+    // This is the only place I could think to put it because there's nothing on it in the document and no way to check this stuff using the given functions
+    public String validDriver(int busCapacity, String fuelType, String licenseType, int driverAge, int experienceYears) {
+        if (busCapacity >= 50 && driverAge >= 50) {
+            return "Driver cannot use this vehicle, capacity over 50 for driver over 50";
+        }
+        if (fuelType != "Diesel") {
+            if (experienceYears < 5) {
+                return "Driver cannot use this vehicle, need 5 years experience for electric buses";
+            }
+            if (licenseType != "Public Transport" && licenseType != "Heavy") {
+                return "Driver cannot use this vehicle, hybrid and electric vehicles require heavy or public transport licence";
+            }
+        }
+        return "Driver can use this vehicle";
+    }
+
     public void clearBusStorage() {
         try (FileWriter fw = new FileWriter(fileRouteString + "BusStorage.txt")) {
             fw.write("busID, Capacity, fuelLevel, fuelType " + "\n");         
