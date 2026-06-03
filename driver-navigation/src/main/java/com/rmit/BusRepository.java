@@ -43,21 +43,6 @@ public class BusRepository {
     }
 
     public String Update(String busID, String field, String newValue) {
-        if (field.equals("fuelLevel")) {
-            String validOrNotFuelLevel = bus.isValidFuelLevel(bus.getFuelLevel());
-
-            if (!validOrNotFuelLevel.equals("Fuel level is valid.")) {
-                return validOrNotFuelLevel;
-            }
-        }
-        if (field.equals("capacity")) {
-            String validOrNotCapacity = bus.isValidCapacity(bus.getCapacity());
-
-            if (!validOrNotCapacity.equals("Fuel level is valid.")) {
-                return validOrNotCapacity;
-            }
-        }
-
         try {
             myFile = new File("driver-navigation\\src\\BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
@@ -76,9 +61,21 @@ public class BusRepository {
 
                     switch (field) {
                         case "capacity":
+                            int capacity = Integer.parseInt(newValue);
+                            int oldCapacity = Integer.parseInt(busInfo[1]);
+                            if (capacity > oldCapacity) {
+                                return "Invalid bus capacity, capacity must be less than or equal to previous capacity";
+                            }
                             busInfo[1] = newValue;
                             break;
                         case "fuelLevel":
+                            double fuelLevel = Double.parseDouble(newValue);
+                            if (fuelLevel > 100.0) {
+                                return "Fuel level can't be above 100.";
+                            }
+                            if (fuelLevel < 0.0) {
+                                return "Fuel level can't be below 0.";
+                            }
                             busInfo[2] = newValue;
                             break;
                         default:
