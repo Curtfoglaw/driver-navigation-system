@@ -43,12 +43,12 @@ public class Bus {
 
     public String isValidBusID(String busID) {
         if (busID.length() != 8) {
-            return "Invalid Bus ID, ID must be exactly 8 characters long";
+            return "Invalid Bus ID, ID must be exactly 8 characters long.";
         }
         if (!busID.matches("\\d+")) {
-            return "Invalid Bus ID, ID must only contain numerical characters";
+            return "Invalid Bus ID, ID must only contain numerical characters.";
         }
-        return "Valid Bus ID";
+        return "Valid Bus ID.";
     }
 
     public String isValidCapacity(int capacity) {

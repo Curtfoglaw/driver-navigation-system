@@ -12,16 +12,34 @@ public class BusRepository {
     File myFile;
 
 
-    public void Add(Bus bus) {
+    public String Add(Bus bus) {
+        String validOrNotID = Bus.isValidDriverID(bus.getBusID());
+        String validOrNotFuelType = Bus.isValidFuelType(bus.getFuelType());
+        String validOrNotFuelLevel = Bus.isValidFuelLevel(bus.getFuelLevel());
+
+        if (!Retrieve(driver.getDriverID()).equals("Bus not found.")) {
+            return "Bus ID must be unique.";
+        }
+        if (!validOrNotID.equals("Valid Bus ID.")) {
+            return validOrNotID;
+        }
+        if (!validOrNotFuelType.equals("Valid fuel type.")) {
+            return validOrNotFuelType;
+        }
+        if (!validOrNotFuelLevel.equals("Fuel level is valid.")) {
+            return validOrNotFuelLevel;
+        }
         try {
             writer = new FileWriter("driver-navigation\\src\\BusStorage.txt", true);
             writer.write(bus.getBusID() + ", " + bus.getCapacity() + ", " + bus.getFuelLevel() + ", " + 
                          bus.getFuelType() + "\n");
             writer.close();
+            return "Bus added successfully";
         }
         catch (IOException e){
             e.printStackTrace();
         }
+        return "Bus could not be added";
     }
 
     public String Update(String busID, String field, String newValue) {
@@ -91,7 +109,7 @@ public class BusRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Bus not found");
+        System.out.println("Bus not found.");
         return null;
     }
 

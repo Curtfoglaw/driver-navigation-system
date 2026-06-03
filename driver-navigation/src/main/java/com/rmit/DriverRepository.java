@@ -59,7 +59,7 @@ public class DriverRepository {
         catch (IOException e){
             e.printStackTrace();
         }
-        return "Driver ould not be added.";
+        return "Driver could not be added.";
     }
 
 
