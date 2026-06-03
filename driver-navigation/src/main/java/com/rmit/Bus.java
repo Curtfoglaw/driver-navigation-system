@@ -72,6 +72,6 @@ public class Bus {
         if (fuelType.equals("Electricity") || fuelType.equals("Hybrid") || fuelType.equals("Diesel")) {
             return "Valid fuel type.";
         }
-        return "Invalid fuel type, fuel type must be Electricity, Hybrid or Diesel."
+        return "Invalid fuel type, fuel type must be Electricity, Hybrid or Diesel.";
     }
 }
