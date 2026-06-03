@@ -36,4 +36,42 @@ public class Bus {
     public String getFuelType() {
         return this.fuelType;
     }
+
+    public String getBusInfo() {
+        return this.busID + ", " + this.capacity + ", " + this.fuelLevel + ", " + this.fuelType;
+    }
+
+    public String isValidBusID(String busID) {
+        if (busID.length() != 8) {
+            return "Invalid Bus ID, ID must be exactly 8 characters long";
+        }
+        if (!busID.matches("\\d+")) {
+            return "Invalid Bus ID, ID must only contain numerical characters"
+        }
+        return "Valid Bus ID"
+    }
+
+    public String isValidCapacity(int capacity) {
+        if (capacity > this.capacity) {
+            return "Invalid bus capacity, capacity must be less than or equal to previous capacity";
+        }
+        return "Valid bus capacity";
+    }
+
+    public String isValidFuelLevel(double fuelLevel) {
+        if (fuelLevel < 0.0) {
+            return "Fuel level can't be below 0.";
+        }
+        if (fuelLevel > 100.0) {
+            return "Fuel level can't be above 100.";
+        }
+        return "Fuel level is valid.";
+    }
+
+    public String isValidFuelType(String fuelType) {
+        if (fuelType.equals("Electricity") || fuelType.equals("Hybrid") || fuelType.equals("Diesel")) {
+            return "Valid fuel type.";
+        }
+        return "Invalid fuel type, fuel type must be Electricity, Hybrid or Diesel."
+    }
 }
