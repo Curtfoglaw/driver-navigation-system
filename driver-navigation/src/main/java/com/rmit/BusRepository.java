@@ -13,11 +13,11 @@ public class BusRepository {
 
 
     public String Add(Bus bus) {
-        String validOrNotID = Bus.isValidDriverID(bus.getBusID());
-        String validOrNotFuelType = Bus.isValidFuelType(bus.getFuelType());
-        String validOrNotFuelLevel = Bus.isValidFuelLevel(bus.getFuelLevel());
+        String validOrNotID = bus.isValidBusID(bus.getBusID());
+        String validOrNotFuelType = bus.isValidFuelType(bus.getFuelType());
+        String validOrNotFuelLevel = bus.isValidFuelLevel(bus.getFuelLevel());
 
-        if (!Retrieve(driver.getDriverID()).equals("Bus not found.")) {
+        if (!Retrieve(driver.getBusID()).equals("Bus not found.")) {
             return "Bus ID must be unique.";
         }
         if (!validOrNotID.equals("Valid Bus ID.")) {
