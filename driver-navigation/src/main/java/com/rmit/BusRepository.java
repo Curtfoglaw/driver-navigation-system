@@ -10,6 +10,23 @@ public class BusRepository {
     
     FileWriter writer;
     File myFile;
+    String fileRouteString = "";
+
+    private boolean appTestingTrue = false;
+
+    public BusRepository() {
+        this(false);
+    }
+
+    public BusRepository(boolean appTestingTrue) {
+        this.appTestingTrue = appTestingTrue;
+
+        if (this.appTestingTrue == true) {
+            fileRouteString = "driver-navigation\\";
+        } else {
+            fileRouteString = ""; 
+        }
+    }
 
 
     public String Add(Bus bus) {
@@ -30,7 +47,7 @@ public class BusRepository {
             return validOrNotFuelLevel;
         }
         try {
-            writer = new FileWriter("driver-navigation\\src\\BusStorage.txt", true);
+            writer = new FileWriter(fileRouteString + "BusStorage.txt", true);
             writer.write(bus.getBusID() + ", " + bus.getCapacity() + ", " + bus.getFuelLevel() + ", " + 
                          bus.getFuelType() + "\n");
             writer.close();
@@ -44,7 +61,7 @@ public class BusRepository {
 
     public String Update(String busID, String field, String newValue) {
         try {
-            myFile = new File("driver-navigation\\src\\BusStorage.txt");
+            myFile = new File(fileRouteString + "BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
             ArrayList<String> lines = new ArrayList<>();
 
@@ -82,7 +99,7 @@ public class BusRepository {
                             return "Could not change detail. Either user entered invalid detail (ID, Capacity, Fuel Level) or didn't select valid field";
                     }
                     lines.set(i, String.join(", ", busInfo));
-                    FileWriter writer = new FileWriter("driver-navigation\\src\\BusStorage.txt");
+                    FileWriter writer = new FileWriter(fileRouteString + "BusStorage.txt");
 
                     for (String line : lines) {
                         writer.write(line + "\n");
@@ -101,7 +118,7 @@ public class BusRepository {
 
     public String Retrieve(String busID) {
         try {
-            myFile = new File("driver-navigation\\src\\BusStorage.txt");
+            myFile = new File(fileRouteString + "BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
 
             while (scnr.hasNextLine()) {
@@ -121,15 +138,14 @@ public class BusRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Bus not found.");
-        return null;
+        return "Bus not found.";
     }
 
     public int Count() {
         int currentCount = 0;
 
         try {
-            myFile = new File("driver-navigation\\src\\BusStorage.txt");
+            myFile = new File(fileRouteString + "BusStorage.txt");
             Scanner scnr = new Scanner(myFile);
 
             while (scnr.hasNextLine()) {
@@ -143,5 +159,15 @@ public class BusRepository {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public void clearBusStorage() {
+        try (FileWriter fw = new FileWriter(fileRouteString + "BusStorage.txt")) {
+            fw.write("busID, Capacity, fuelLevel, fuelType " + "\n");         
+        } 
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 }
