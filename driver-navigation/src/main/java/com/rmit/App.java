@@ -15,7 +15,7 @@ public class App
 
         repo.Count();
 
-        Driver driver = new Driver("24}!1111NT", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
+        Driver driver = new Driver("24}!1111LT", "John", 5, "Medium", "12|Main St|Melbourne|VIC|Australia", "12-05-1990");
         String addResult = repo.Add(driver);
         repo.Count();
     }
